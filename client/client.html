@@ -2,14 +2,50 @@
   <title>timers</title>
 </head>
 
-<body>
-	{{> page}}
-</body>
+<body></body>
 
-<template name="page">
-	{{> pie pieData=pieData}}
+
+<template name="mainLayout">
+	{{> yield region='top'}}
+	{{> yield}}
+	{{> yield region='bottom'}}
+</template>
+
+<template name="loading">
+	loading
+</template>
+
+<template name="formLayout">
+	<div>
+    {{> atForm}}
+  </div>
+</template>
+
+<template name="top">
+</template>
+<template name="bottom">
+</template>
+
+<template name="home">
+	<h4>
+		{{#if currentUser}}
+      <a href="{{pathFor 'profile'}}">{{currentUser.username}}</a> | 
+      <a href="{{pathFor 'logout'}}">Logout</a>
+    {{else}}
+      <a href="{{pathFor 'signin'}}">Login</a> | 
+      <a href="{{pathFor 'signup'}}">Register</a>
+    {{/if}}
+	</h4>
+	{{#each pies}}
+		{{> pie pieData=this}}
+	{{/each}}
 </template>
 
 <template name="pie">
-	<canvas class="pie-canvas" width="400" height="400"></canvas>
+	<div class="pie-container">
+		<h1 class="pie-header">Jalala la la</h1>
+		<div class="pie-content">
+			<canvas class="pie-canvas" width="80" height="80"></canvas>
+		</div>
+	</div>
 </template>

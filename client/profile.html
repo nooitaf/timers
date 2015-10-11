@@ -1,0 +1,16 @@
+<template name="profile">
+  {{#with currentUser}}
+    <form>
+      <div>
+        <label>Email</label>
+        <input type="email" class="profile-input email" placeholder="Email" value="{{#each emails}}{{address}}{{/each}}">
+      </div>
+      <div>
+        <label>Username</label>
+        <input type="text" class="profile-input username" placeholder="Name" value="{{username}}">
+      </div>
+      <button class="submit">Save Changes</button>
+      <a href="{{pathFor 'home'}}"><h4>&lt;&lt; Back</h4></a>
+    </form>
+  {{/with}}
+</template>

@@ -1,0 +1,23 @@
+.pie-container {
+	padding: 5px;
+	border: 1px solid #eee;
+	margin: 8px;
+	display: inline;
+	background: #eee;
+	float: left;
+}
+
+.pie-header {
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 16px;
+	margin:0px;
+	padding:5px;
+}
+
+.pie-content {
+	text-align: center;
+}
+.pie-canvas {
+	margin-left: auto;
+	margin-right: auto;
+}
