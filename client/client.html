@@ -7,5 +7,9 @@
 </body>
 
 <template name="page">
-	{{> highchartsHelper chartId="test" chartWidth="100%" charHeight="100%" chartObject=topGenresChart}}
+	{{> pie pieData=pieData}}
+</template>
+
+<template name="pie">
+	<canvas class="pie-canvas" width="400" height="400"></canvas>
 </template>
