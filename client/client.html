@@ -2,7 +2,10 @@
   <title>timers</title>
 </head>
 
-<body></body>
+<body>
+	{{> page}}
+</body>
 
-<template name="mainLayout">
+<template name="page">
+	{{> highchartsHelper chartId="test" chartWidth="100%" charHeight="100%" chartObject=topGenresChart}}
 </template>
