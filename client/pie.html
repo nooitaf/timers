@@ -1,0 +1,27 @@
+<template name="pie">
+  <div class="column">
+    <div class="ui fluid card">
+      <a class="image" href="#">
+        <canvas class="ui center aligned pie-canvas" width="80" height="80"></canvas>
+      </a>
+      {{#if userId}}
+        <div class="content">{{usernameWithId userId}}</div>
+      {{/if}}
+      <div class="content">
+        <a class="header" href="#">{{title}}</a>
+        <div class="meta">
+          <span class="from-now"></span>
+        </div>
+      </div>
+      {{#if currentUser}}
+      	{{#if isOwner}}
+        	<div class="extra content">
+            <div class="ui two buttons">
+              <div class="ui basic red button timer-remove">Remove</div>
+            </div>
+          </div>
+        {{/if}}
+      {{/if}}
+    </div>
+  </div>
+</template>

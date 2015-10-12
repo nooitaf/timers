@@ -43,10 +43,10 @@ Meteor.methods({
         Accounts.removeEmail(this.userId, user.emails[0].address);
       Accounts.addEmail(this.userId, options.email)
   },
-  nameOfUserWithId: function(userId) {
-    return Meteor.users.findOne({
-      _id: userId
-    });;
+  usernameWithId: function(userId) {
+    var user = Meteor.users.findOne(userId);
+    console.log(userId, user);
+    return user && user.username;
   }
 })
 
@@ -88,16 +88,17 @@ Timers.allow({
   }
 })
 Meteor.publish('timers',function(){
-  if (Meteor.users.findOne(this.userId) && Meteor.users.findOne(this.userId).admin) {
+  // if (Meteor.users.findOne(this.userId) && Meteor.users.findOne(this.userId).admin) {
+
     return Timers.find({});
-  } else {
-    if (Meteor.users.findOne(this.userId)) {
-      return Timers.find({
-        userId: this.userId
-      });
-    }
-    this.ready();
-  }
+  // } else {
+  //   if (Meteor.users.findOne(this.userId)) {
+  //     return Timers.find({
+  //       userId: this.userId
+  //     });
+  //   }
+  //   this.ready();
+  // }
 })
 Meteor.startup(function() {
   if (!Timers.findOne()) {

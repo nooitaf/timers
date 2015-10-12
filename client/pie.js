@@ -1,24 +1,23 @@
-
-Template.home.helpers({
-  pies: function() {
-    return Timers.find();
-  }
-})
-
 Template.pie.helpers({
-  humanizeRange: function(d1,d2){
-    return moment(d2).fromNow()
-  },
   isOwner: function(){
     return this.userId === Meteor.userId()
   }
 })
+
+Template.pie.events({
+  'click .timer-remove': function(e,t){
+    Meteor.clearInterval(t.pieInterval)
+    Timers.remove(this._id)
+  }
+})
+
 Template.pie.onRendered(function() {
+  var self = this
   var pieOptions = {
     //Boolean - Whether we should show a stroke on each segment
     segmentShowStroke: true,
     //String - The colour of each segment stroke
-    segmentStrokeColor: "#000",
+    segmentStrokeColor: "#888",
     //Number - The width of each segment stroke
     segmentStrokeWidth: 0.3,
     //Number - The percentage of the chart that we cut out of the middle
@@ -32,16 +31,19 @@ Template.pie.onRendered(function() {
     //Boolean - Whether we animate scaling the Doughnut from the centre
     animateScale: false,
   }
-  var pData = getPieDataWithData(this.data.pieData)
+  var pData = getPieDataWithData(this.data)
   var ctx = this.find(".pie-canvas").getContext("2d")
   var pie = new Chart(ctx).Pie(pData, pieOptions)
-  var self = this
+  var p_data = self.data;
+  self.$('.from-now').html(moment(p_data.date_end).fromNow())
   this.pieInterval = Meteor.setInterval(function(){
-    var data = getPieDataWithData(self.data.pieData)
+    var data = getPieDataWithData(p_data)
     pie.segments[0].value = data[0].value;
     pie.segments[1].value = data[1].value;
     pie.update()
-    // console.log(data, pie)
+    self.$('.from-now').html(moment(p_data.date_end).fromNow())
+    if (!self.$('.from-now'))
+      Meteor.clearInterval(self.pieInterval)
   },1000)
 
 })

@@ -22,3 +22,9 @@ getPieDataWithData = function(data) {
   }
   return [{value:100,color:"#000"},{value:0,color:"#FFF"}];
 }
+
+UI.registerHelper('usernameWithId',function(userId){
+  Meteor.call('usernameWithId',userId, function(e,r){
+    if (!e) return r;
+  })
+})
