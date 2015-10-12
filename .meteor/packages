@@ -20,6 +20,7 @@ chart:chart
 reactive-var
 
 momentjs:moment
+benmgreene:moment-range
 underscore
 
 iron:router

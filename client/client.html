@@ -4,48 +4,39 @@
 
 <body></body>
 
-
 <template name="mainLayout">
-	{{> yield region='top'}}
-	{{> yield}}
-	{{> yield region='bottom'}}
+  {{> yield region='top'}}
+  {{> yield}}
+  {{> yield region='bottom'}}
 </template>
 
 <template name="loading">
-	loading
+  loading
 </template>
 
 <template name="formLayout">
-	<div>
+  <div>
     {{> atForm}}
   </div>
 </template>
 
 <template name="top">
+  <div class="ui container">
+    <div class="ui right aligned basic segment">
+      {{#if currentUser}}
+        <a href="{{pathFor 'profile'}}">{{currentUser.username}}</a> | 
+        <a href="{{pathFor 'logout'}}">Logout</a>
+      {{else}}
+        <a href="{{pathFor 'signin'}}">Login</a> | 
+        <a href="{{pathFor 'signup'}}">Register</a>
+      {{/if}}
+    </div>
+    <div class="ui left aligned basic segment">
+      <h1 class="ui center aligned header">Timers</h1>
+    </div>
+  </div>
 </template>
+
 <template name="bottom">
 </template>
 
-<template name="home">
-	<h4>
-		{{#if currentUser}}
-      <a href="{{pathFor 'profile'}}">{{currentUser.username}}</a> | 
-      <a href="{{pathFor 'logout'}}">Logout</a>
-    {{else}}
-      <a href="{{pathFor 'signin'}}">Login</a> | 
-      <a href="{{pathFor 'signup'}}">Register</a>
-    {{/if}}
-	</h4>
-	{{#each pies}}
-		{{> pie pieData=this}}
-	{{/each}}
-</template>
-
-<template name="pie">
-	<div class="pie-container">
-		<h1 class="pie-header">Jalala la la</h1>
-		<div class="pie-content">
-			<canvas class="pie-canvas" width="80" height="80"></canvas>
-		</div>
-	</div>
-</template>

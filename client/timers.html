@@ -1,0 +1,65 @@
+<template name="timersFromUser">
+	<div class="ui five column stackable padded grid">
+		{{#each timers}}
+			{{> pie pieData=this}}
+		{{/each}}
+	</div>
+</template>
+
+<template name="timerAdd">
+	<div class="ui stackable centered grid">
+	  <div class="ui six wide tablet eight wide computer column">
+		  <div class="ui form">
+		  	<div class="field">
+			  	<label>Timer title</label>
+			    <input class="timer-title" type="text" placeholder="Title of your timer" value="">
+		  	</div>
+		  </div>
+		  <table class="ui definition table">
+		    <tbody>
+		      <tr>
+		      	<td>Days</td>
+		        <td>
+		        	<div class="ui input">
+			        	<input class="timer-range-d" type="number" value="">
+		        	</div>
+		        </td>
+		      </tr>
+		      <tr>
+		      	<td>Hours</td>
+		        <td>
+		        	<div class="ui input">
+			        	<input class="timer-range-h" type="number" value="">
+		        	</div>
+		        </td>
+		      </tr>
+		      <tr>
+		      	<td>Minutes</td>
+		        <td>
+		        	<div class="ui input">
+			        	<input class="timer-range-m" type="number" value="">
+		        	</div>
+		        </td>
+		      </tr>
+		      <tr>
+		      	<td>Seconds</td>
+		        <td>
+		        	<div class="ui input">
+			        	<input class="timer-range-s" type="number" value="">
+		        	</div>
+		        </td>
+		      </tr>
+		    </tbody>
+		    <tfoot>
+		      <tr>
+		      	<td></td>
+		      	<td>
+						  <button class="ui primary button timer-submit">Create</button>
+							<button class="ui button timer-cancel">Discard</button>
+		      	</td>
+		      </tr>
+		    </tfoot>
+		  </table>
+	  </div>
+	</div>
+</template>
